@@ -1,3 +1,4 @@
+from utils import build_response
 import socket
 
 from pathlib import Path
@@ -55,13 +56,14 @@ while True:
     route = extract_route(request)
     filepath = CUR_DIR / route
     if filepath.is_file():
-        response = read_file(filepath)
+        response = build_response() + read_file(filepath)
     elif route == '':
-        response = index()
+        # tirar o build response e colocar dentro da funcao
+        response = build_response() + index(request)
     else:
-        response = bytes()
+        response = build_response()
 
-    client_connection.sendall('HTTP/1.1 200 OK\n\n'.encode()+response)
+    client_connection.sendall(response)
     client_connection.close()
 
 server_socket.close()

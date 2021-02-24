@@ -26,3 +26,9 @@ def load_data(json_path):
 
 def load_template(template_file):
     return read_file('templates/' + template_file)
+
+
+def build_response(body='HTTP/1.1', code='200', reason='OK', headers=''):
+    response = [body, str(code), reason, headers]
+    response = (' '.join(response)) + '\n\n'
+    return response.encode()
