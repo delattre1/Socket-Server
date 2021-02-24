@@ -9,35 +9,6 @@ CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
 
-NOTE_TEMPLATE = '''  <li>
-    <h3>{title}</h3>
-    <p>{details}</p>
-  </li>
-'''
-
-
-RESPONSE_TEMPLATE = '''HTTP/1.1 200 OK
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Get-it</title>
-</head>
-<body>
-
-<img src="img/logo-getit.png">
-
-<h1>Get-it</h1>
-<p>Como o Post-it, mas com outro verbo</p>
-
-<ul>
-{notes}
-</ul>
-
-</body>
-</html>
-'''
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -61,7 +32,7 @@ while True:
     elif route == '':
         # tirar o build response e colocar dentro da funcao
         print('is home')
-        response = build_response() + index(request)
+        response = index(request)
     else:
         print('is else')
         response = build_response()

@@ -32,6 +32,7 @@ def index(request):
             params[key] = value
 
         add_annotation(params)
+        return build_response(code=303, reason='See Other', headers='Location: /')
         # return build_response(code='303',reason='See Other', headers='Location: /')
         # return 'HTTP/1.1 303 See Other Location: /\n\nHello World'
 
@@ -44,4 +45,4 @@ def index(request):
     ]
     notes = '\n'.join(notes_li)
 
-    return load_template('index.html').format(notes=notes).encode()
+    return build_response() + load_template('index.html').format(notes=notes).encode()
