@@ -57,10 +57,13 @@ while True:
     filepath = CUR_DIR / route
     if filepath.is_file():
         response = build_response() + read_file(filepath)
+        print('is file')
     elif route == '':
         # tirar o build response e colocar dentro da funcao
+        print('is home')
         response = build_response() + index(request)
     else:
+        print('is else')
         response = build_response()
 
     client_connection.sendall(response)

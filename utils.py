@@ -28,7 +28,11 @@ def load_template(template_file):
     return read_file('templates/' + template_file)
 
 
-def build_response(body='HTTP/1.1', code='200', reason='OK', headers=''):
-    response = [body, str(code), reason, headers]
-    response = (' '.join(response)) + '\n\n'
+def build_response(body='', code='200', reason='OK', headers=''):
+    args = [str(code), reason]
+    response = 'HTTP/1.1 ' + (' '.join(args))
+    if headers == '':
+        response += '\n\n' + body
+    else:
+        response += '\n' + headers + '\n\n' + body
     return response.encode()
