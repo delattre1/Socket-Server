@@ -35,7 +35,8 @@ while True:
         response = index(request)
     else:
         print('is else')
-        response = build_response()
+        response = build_response(
+            body='404 Not Found', code=404, reason='Not Found')
 
     client_connection.sendall(response)
     client_connection.close()
